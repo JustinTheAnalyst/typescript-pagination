@@ -12,12 +12,23 @@
 }
 
 .page {
+  cursor: pointer;
   font-size: 20px;
   padding: 0.2rem;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .isActive {
-    font-weight: 600;
+  &:hover {
+    background-color: rgb(117, 117, 117);
   }
+}
+
+.isActive {
+  background-color: rgb(117, 117, 117);
 }
 
 .page-info {

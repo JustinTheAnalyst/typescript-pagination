@@ -10,7 +10,7 @@ interface IProps {
 
 export function Pagination(props: IProps) {
     // initialize
-    const [currentPage, setCurrentPage] = useState(1);
+    // const [currentPage, setCurrentPage] = useState(1);
     const [offset, setOffset] = useState(0);
 
     const contentPerPage = props.contentPerPage;
@@ -18,18 +18,19 @@ export function Pagination(props: IProps) {
     const from = Math.min(offset + 1, total);
     const to = Math.min(offset + contentPerPage, total);
     const totalPage = Math.ceil(total / contentPerPage);
+    const currentPage = offset / contentPerPage + 1;
 
     const pageArray = [-2, -1, 0, 1, 2].map((v) => currentPage + v).filter((page) => page > 0 && page <= totalPage);
 
     function goToNextPage() {
-        setCurrentPage((page) => page + 1);
+        // setOffset(contentPerPage * (totalPage - 1));
+        setOffset((prev) => Math.min(prev + contentPerPage, totalPage));
     }
 
     function gotToPreviousPage() {
-        setCurrentPage((page) => page - 1);
+        // setOffset(0);
+        setOffset((prev) => Math.max(prev - contentPerPage, 0));
     }
-
-    console.log(currentPage);
 
     return (
         <div className="container">
@@ -38,16 +39,16 @@ export function Pagination(props: IProps) {
             </div>
             {total > 0 && (
                 <div className="page-container">
-                    <button onClick={gotToPreviousPage} disabled={currentPage === 1}>&lt;&lt;</button>
+                    <button onClick={gotToPreviousPage} disabled={currentPage === 1}>&lt;</button>
 
                     {/* for each page in page array, set offset relative to page number */}
                     {pageArray.map((page) => {
                         return (
-                            <PaginationButton key={page} page={page} currentPage={currentPage} contentPerPage={contentPerPage} setOffset={setOffset} />
+                            <PaginationButton key={page} page={page} offset={offset} contentPerPage={contentPerPage} setOffset={setOffset} />
                         );
                     })}
 
-                    <button onClick={goToNextPage} disabled={currentPage === totalPage}>&gt;&gt;</button>
+                    <button onClick={goToNextPage} disabled={currentPage === totalPage}>&gt;</button>
                 </div>
             )}
         </div>
