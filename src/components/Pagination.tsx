@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { FaCaretLeft, FaCaretRight, FaChevronLeft, FaChevronRight, } from 'react-icons/fa';
 import {PaginationButton} from "./PaginationButton";
 import './paginationStyles.scss';
 
@@ -40,7 +41,7 @@ export function Pagination(props: IProps) {
 
             {total > 0 && (
                 <div className="page-container">
-                    <button onClick={gotToPreviousPage} disabled={currentPage === 1}>&lt;</button>
+                    <button onClick={gotToPreviousPage} disabled={currentPage === 1}><FaCaretLeft className="page-left-icon" /></button>
 
                     {!pageArray.includes(1) && (
                         <>
@@ -81,7 +82,7 @@ export function Pagination(props: IProps) {
                         </>
                     )}
 
-                    <button onClick={goToNextPage} disabled={currentPage === totalPage}>&gt;</button>
+                    <button onClick={goToNextPage} disabled={currentPage === totalPage}><FaCaretRight className="page-right-icon" /></button>
                 </div>
             )}
         </div>

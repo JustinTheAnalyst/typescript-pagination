@@ -1,7 +1,5 @@
 .container {
-  width: 600px;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   font-size: 0.65rem;
   padding: 0.2rem;
 }
@@ -9,11 +7,13 @@
 .page-container {
   display: flex;
   align-items: center;
+  gap: 0.2em;
 }
 
 .page {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: bold;
   padding: 0.2rem;
   border-radius: 100%;
   width: 40px;
@@ -24,16 +24,23 @@
 
   &:hover {
     background-color: rgb(117, 117, 117);
+    color: white;
   }
 }
 
 .isActive {
   background-color: rgb(117, 117, 117);
+  color: white;
 }
 
 .page-info {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  grid-gap: 0.4rem;
+  display: flex;
+  flex: 1;
+  gap: 0.4rem;
   align-items: center;
+}
+
+.page-right-icon,
+.page-left-icon {
+  cursor: pointer;
 }
